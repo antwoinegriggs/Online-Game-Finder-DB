@@ -1,8 +1,10 @@
+// api.js
+
 exports.handler = async (event, context) => {
   // Set headers to enable CORS
   const headers = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Origin, X-Requested-With",
+    "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "GET, POST",
   };
 
@@ -27,21 +29,6 @@ exports.handler = async (event, context) => {
     }
   } else if (event.httpMethod === "POST") {
     try {
-      // Check for the "Origin" or "X-Requested-With" header
-      const originHeader = event.headers["origin"];
-      const requestedWithHeader = event.headers["x-requested-with"];
-
-      if (!originHeader && !requestedWithHeader) {
-        // Return an error response if neither header is present
-        return {
-          statusCode: 400,
-          headers,
-          body: JSON.stringify({
-            error: "Missing required headers: Origin or X-Requested-With",
-          }),
-        };
-      }
-
       // Parse the incoming JSON payload from the request body
       const requestBody = JSON.parse(event.body);
 
