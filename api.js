@@ -1,6 +1,13 @@
 // api.js
 
 exports.handler = async (event, context) => {
+  // Set headers to enable CORS
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST",
+  };
+
   if (event.httpMethod === "GET") {
     try {
       // Process the GET request as needed
@@ -9,12 +16,14 @@ exports.handler = async (event, context) => {
       // Return the data as the response
       return {
         statusCode: 200,
+        headers,
         body: JSON.stringify(data),
       };
     } catch (error) {
       // Return an error response if there was an issue processing the request
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({ error: "Failed to process GET request" }),
       };
     }
@@ -29,6 +38,7 @@ exports.handler = async (event, context) => {
       // Return a success response
       return {
         statusCode: 200,
+        headers,
         body: JSON.stringify({
           message: "POST request processed successfully",
         }),
@@ -37,6 +47,7 @@ exports.handler = async (event, context) => {
       // Return an error response if there was an issue processing the request
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ error: "Failed to process POST request" }),
       };
     }
@@ -44,6 +55,7 @@ exports.handler = async (event, context) => {
     // Handle other HTTP methods (e.g., PUT, DELETE) if needed
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
