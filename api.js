@@ -1,26 +1,3 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCnlaAw6Jjzvzgz3HKtBs2Z3R0C8vhwLA8",
-  authDomain: "online-games-db.firebaseapp.com",
-  databaseURL: "https://online-games-db-default-rtdb.firebaseio.com",
-  projectId: "online-games-db",
-  storageBucket: "online-games-db.appspot.com",
-  messagingSenderId: "571802787583",
-  appId: "1:571802787583:web:48300a232326466e40f6ca",
-  measurementId: "G-TC4NEBZ8HK",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
 exports.handler = async (event, context) => {
   // Set headers to enable CORS
   const headers = {
@@ -53,8 +30,8 @@ exports.handler = async (event, context) => {
       // Parse the incoming JSON payload from the request body
       const requestBody = JSON.parse(event.body);
 
-      // Save the data to Firestore in the "games" collection with a specific document ID
-      await db.collection("games").doc("docid").set(requestBody);
+      // Process the data from the request body as needed
+      // ...
 
       // Return a success response
       return {
