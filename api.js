@@ -1,13 +1,8 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const firebase = require("firebase");
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Initialize Firebase with your Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCnlaAw6Jjzvzgz3HKtBs2Z3R0C8vhwLA8",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "online-games-db.firebaseapp.com",
   databaseURL: "https://online-games-db-default-rtdb.firebaseio.com",
   projectId: "online-games-db",
@@ -18,8 +13,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 exports.handler = async (event, context) => {
   // Set headers to enable CORS
